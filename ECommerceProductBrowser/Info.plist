@@ -2,6 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>avertastd-black.otf</string>
+		<string>avertastd-blackitalic.otf</string>
+		<string>avertastd-bold.otf</string>
+		<string>avertastd-bolditalic.otf</string>
+		<string>avertastd-extrabold.otf</string>
+		<string>avertastd-extrabolditalic.otf</string>
+		<string>avertastd-extrathin.otf</string>
+		<string>avertastd-extrathinitalic.otf</string>
+		<string>avertastd-light.otf</string>
+		<string>avertastd-lightitalic.otf</string>
+		<string>avertastd-regular.otf</string>
+		<string>avertastd-regularitalic.otf</string>
+		<string>avertastd-semibold.otf</string>
+		<string>avertastd-semibolditalic.otf</string>
+		<string>avertastd-thin.otf</string>
+		<string>avertastd-thinitalic.otf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
