@@ -81,6 +81,9 @@ class LoginVC: UIViewController {
         
         // Setup Login Button UI
         
+        self.txtFldEmail.text = "arjun@gmail.com"
+        self.txtFldPassword.text = "1234"
+        
         self.btnLogin.layer.cornerRadius = UIConstants.Button.cornerRadius
         
         // Call Textfield Delegate
@@ -108,6 +111,13 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func actionLoginTapped(_ sender: Any) {
+        
+        self.view.endEditing(true)
+        
+        self.showAlert(title: "Success", message: "Login successful.") {
+            print("OK tapped")
+            // Navigate to another screen, etc.
+        }
         
     }
     
