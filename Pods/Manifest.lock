@@ -1,0 +1,35 @@
+PODS:
+  - IQKeyboardCore (1.0.7)
+  - IQKeyboardToolbar (1.1.1):
+    - IQKeyboardCore
+    - IQKeyboardToolbar/Core (= 1.1.1)
+  - IQKeyboardToolbar/Core (1.1.1):
+    - IQKeyboardCore
+    - IQKeyboardToolbar/Placeholderable
+  - IQKeyboardToolbar/Placeholderable (1.1.1):
+    - IQKeyboardCore
+  - IQKeyboardToolbarManager (1.1.3):
+    - IQKeyboardToolbar
+    - IQTextInputViewNotification
+  - IQTextInputViewNotification (1.0.8):
+    - IQKeyboardCore
+
+DEPENDENCIES:
+  - IQKeyboardToolbarManager
+
+SPEC REPOS:
+  trunk:
+    - IQKeyboardCore
+    - IQKeyboardToolbar
+    - IQKeyboardToolbarManager
+    - IQTextInputViewNotification
+
+SPEC CHECKSUMS:
+  IQKeyboardCore: cb7f0a9a17dd32599569f2f478c1418dc28bcebb
+  IQKeyboardToolbar: d4bdccfb78324aec2f3920659c77bb89acd33312
+  IQKeyboardToolbarManager: 6c693c8478d6327a7ef2107528d29698b3514dbb
+  IQTextInputViewNotification: f5e954d8881fd9808b744e49e024cc0d4bcfe572
+
+PODFILE CHECKSUM: 18d53830f9d87e56f3a631db2767b6d9228d8ea9
+
+COCOAPODS: 1.16.2
