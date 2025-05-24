@@ -17,20 +17,50 @@ class LoginViewModel: ObservableObject {
     
     @Published private(set) var isEmailValid: Bool = false
     @Published private(set) var isFormValid: Bool = false
+    @Published private(set) var isLoading: Bool = false
     
+    
+    @Published var loginResult: LoginResponse? = nil   // ✅ Real result
+    @Published var errorMessage: String? = nil         // ✅ For failure
+    
+    private let loginService: LoginServiceProtocol
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    
+    init(loginService: LoginServiceProtocol) {
+        self.loginService = loginService
+        
         $email
             .map { [weak self] in self?.validateEmail($0) ?? false }
             .assign(to: \.isEmailValid, on: self)
             .store(in: &cancellables)
-
+        
         Publishers.CombineLatest($email, $password)
             .map { !$0.0.isEmpty && !$0.1.isEmpty }
             .assign(to: \.isFormValid, on: self)
             .store(in: &cancellables)
     }
+    
+    
+    func login() {
+        isLoading = true
+        errorMessage = nil
+        loginResult = nil
+        
+        loginService.login(email: email, password: password)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                self?.isLoading = false
+                if case .failure(let error) = completion {
+                    self?.errorMessage = ErrorMapper.message(for: error)
+                }
+            } receiveValue: { [weak self] response in
+                self?.loginResult = response // ✅ Set result here
+            }
+            .store(in: &cancellables)
+    }
+    
+    
     
     private func validateEmail(_ email: String) -> Bool {
         let pattern = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$"
@@ -42,6 +72,5 @@ class LoginViewModel: ObservableObject {
         
         return matches > 0
     }
-    
 }
 

@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.10.2)
   - IQKeyboardCore (1.0.7)
   - IQKeyboardToolbar (1.1.1):
     - IQKeyboardCore
@@ -13,23 +14,32 @@ PODS:
     - IQTextInputViewNotification
   - IQTextInputViewNotification (1.0.8):
     - IQKeyboardCore
+  - SDWebImage (5.21.0):
+    - SDWebImage/Core (= 5.21.0)
+  - SDWebImage/Core (5.21.0)
 
 DEPENDENCIES:
+  - Alamofire
   - IQKeyboardToolbarManager
+  - SDWebImage
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - IQKeyboardCore
     - IQKeyboardToolbar
     - IQKeyboardToolbarManager
     - IQTextInputViewNotification
+    - SDWebImage
 
 SPEC CHECKSUMS:
+  Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
   IQKeyboardCore: cb7f0a9a17dd32599569f2f478c1418dc28bcebb
   IQKeyboardToolbar: d4bdccfb78324aec2f3920659c77bb89acd33312
   IQKeyboardToolbarManager: 6c693c8478d6327a7ef2107528d29698b3514dbb
   IQTextInputViewNotification: f5e954d8881fd9808b744e49e024cc0d4bcfe572
+  SDWebImage: f84b0feeb08d2d11e6a9b843cb06d75ebf5b8868
 
-PODFILE CHECKSUM: 18d53830f9d87e56f3a631db2767b6d9228d8ea9
+PODFILE CHECKSUM: f751dd1f50d08b4299a11114e8269369eb032c05
 
 COCOAPODS: 1.16.2
