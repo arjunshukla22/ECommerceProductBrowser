@@ -97,14 +97,23 @@ class LoginVC: UIViewController {
             .compactMap { $0 } // Filters out nil values
             .receive(on: RunLoop.main)
             .sink { [weak self] response in
-                print("✅ Login Success: Token = \(/response?.access_token)")
                 
-                if let res = response {
+            }
+            .store(in: &cancellables)
+        
+        // Observe User Data sucess
+        viewModel.$userResult
+            .compactMap { $0 } // Filters out nil values
+            .receive(on: RunLoop.main)
+            .sink { [weak self] response in
+                if let res = self?.viewModel.loginResult {
                     self?.navigateToHomeScreen(with: res)
                 }
             }
             .store(in: &cancellables)
         
+        
+      
         // Observe loading state
         viewModel.$isLoading
             .receive(on: RunLoop.main)
@@ -162,9 +171,10 @@ extension LoginVC {
         // Save token
         TokenManager.shared.save(token: token)
         
+        // Save User Data in Local
+        self.saveUserProfileDatainLocal()
         
-        // Push/present home screen
-        
+        // Push home screen
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeVC {
             if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
@@ -173,12 +183,17 @@ extension LoginVC {
             }
         }
         
-        
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-//        if let vc : HomeVC = sb.instantiateViewController(withIdentifier: "HomeVC") as? HomeVC {
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
     }
+    
+    
+    private func saveUserProfileDatainLocal(){
+        
+        if let user : UserProfileResponse = self.viewModel.userResult {
+            UserDefaultsManager.shared.saveUser(user)
+        }
+    }
+    
+    
 }
 
 

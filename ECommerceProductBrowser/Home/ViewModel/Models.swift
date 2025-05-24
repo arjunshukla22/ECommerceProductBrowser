@@ -17,8 +17,12 @@ struct Category: Decodable, Identifiable {
 }
 
 struct Product: Decodable, Identifiable {
-    let id: String
-    let name: String
-    let price: Double
+    let id: Int
+    let title, slug: String
+    let price: Int
+    let description: String
+    let category: Category
+    let images: [String]
+    let creationAt, updatedAt: String
 }
 

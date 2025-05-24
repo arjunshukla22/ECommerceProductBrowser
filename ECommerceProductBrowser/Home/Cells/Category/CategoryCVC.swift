@@ -38,8 +38,9 @@ class CategoryCVC: UICollectionViewCell {
         self.lblTitle.text = category.name
         
         img.contentMode = .scaleToFill
-        img.sd_setImage(with: URL(string: category.image))
         
+        let placeholderImg = UIImage(named: "NoImageFound")
+        img.sd_setImage(with: URL(string: category.image), placeholderImage: placeholderImg)
     }
 
 }

@@ -15,6 +15,7 @@ struct APIConstants {
     // MARK: - Endpoints
     struct Auth {
         static let login = baseURL + "auth/login"
+        static let profile = baseURL + "auth/profile"
     }
     
     struct Categories {

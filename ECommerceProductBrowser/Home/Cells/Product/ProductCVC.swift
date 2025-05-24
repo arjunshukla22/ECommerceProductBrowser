@@ -34,10 +34,19 @@ class ProductCVC: UICollectionViewCell {
     }
     
     
-    func bindCellData() {
+    func bindCellData(product:Product) {
         
+        self.lblTitle.text = product.title
+        self.lblPrice.text = "$ \(product.price)" + " \(product.category.name)"
+        self.lblDescription.text = product.description
+        
+    
         img.contentMode = .scaleToFill
-        img.sd_setImage(with: URL(string: "https://images.unsplash.com/3/www.madebyvadim.com.jpg?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8QWNjZXNzb3JpZXN8ZW58MHx8MHx8fDA%3D"))
+        img.sd_setImage(with: URL(string: /product.images.first))
+        
+        let placeholderImg = UIImage(named: "NoImageFound")
+
+        img.sd_setImage(with: URL(string: /product.images.first), placeholderImage: placeholderImg)
         
     }
 }

@@ -10,7 +10,6 @@ import Combine
 import Alamofire
 
 
-
 protocol HomeServiceProtocol {
     func fetchCategories() -> AnyPublisher<[Category], NetworkError>
     func fetchProducts(for categoryId: String) -> AnyPublisher<[Product], NetworkError>
@@ -32,9 +31,14 @@ class HomeService: HomeServiceProtocol {
     }
 
     func fetchProducts(for categoryId: String) -> AnyPublisher<[Product], NetworkError> {
+        var param = [String:Any]()
+        if /Int(categoryId) > 0 {
+            param  = ["categoryId": categoryId]
+        }
+        
         return networkManager.request(APIConstants.Products.product,
                                       method: .get,
-                                      parameters: nil,
+                                      parameters: param,
                                       encoding: URLEncoding.default,
                                       headers: nil)
     }

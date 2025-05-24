@@ -16,17 +16,26 @@ class HomeVC: UIViewController {
     
     private let viewModel = HomeViewModel(homeService: HomeService())
     private var cancellables = Set<AnyCancellable>()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        setUpUI()
         
         setupCollVw()
         
         bindViewModel()
+    }
+    
+    
+    private func setUpUI(){
+        
+        // Hide Navigation Bar
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        let retrievedUser : UserProfileResponse? = UserDefaultsManager.shared.loadUser()
+        debugPrint(/retrievedUser?.name)
+        
     }
     
     private func bindViewModel() {
@@ -34,20 +43,22 @@ class HomeVC: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] categories in
                 // reload your category collection/table view
-                print("Categories updated:", categories)
+               // print("Categories updated:", categories)
                 
                 self?.collCategory.reloadData()
             }
             .store(in: &cancellables)
-
+        
         viewModel.$products
             .receive(on: DispatchQueue.main)
             .sink { [weak self] products in
                 // reload your product collection/table view
-                print("Products updated:", products)
+                //print("Products updated:", products)
+                
+                self?.collProducts.reloadData()
             }
             .store(in: &cancellables)
-
+        
         viewModel.$errorMessage
             .compactMap { $0 }
             .receive(on: DispatchQueue.main)
@@ -56,7 +67,7 @@ class HomeVC: UIViewController {
                 print("Error: \(error)")
             }
             .store(in: &cancellables)
-
+        
         viewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoading in
@@ -65,8 +76,8 @@ class HomeVC: UIViewController {
             }
             .store(in: &cancellables)
     }
-
-
+    
+    
 }
 
 
@@ -93,7 +104,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         case collCategory:
             return self.viewModel.categories.count
         case collProducts:
-            return 30
+            return self.viewModel.products.count
         default:return 0
         }
     }
@@ -111,13 +122,14 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             return cell
         case collProducts:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCVC", for: indexPath) as? ProductCVC else { return UICollectionViewCell() }
-            cell.bindCellData()
+            let product = viewModel.products[indexPath.item]
+            cell.bindCellData(product: product)
             
             return cell
         default:return UICollectionViewCell()
         }
         
-       
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
@@ -130,7 +142,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         case collProducts:break
         default:break
         }
-
+        
     }
 }
 
@@ -150,7 +162,7 @@ extension HomeVC {
         self.collProducts.showsHorizontalScrollIndicator = false
         
         self.collProducts.register(UINib(nibName: "ProductCVC", bundle: .main), forCellWithReuseIdentifier: "ProductCVC")
-       // self.collProducts.collectionViewLayout.invalidateLayout()
+        // self.collProducts.collectionViewLayout.invalidateLayout()
         
     }
     

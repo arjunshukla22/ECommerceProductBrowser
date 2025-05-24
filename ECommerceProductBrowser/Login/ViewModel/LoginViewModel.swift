@@ -20,8 +20,9 @@ class LoginViewModel: ObservableObject {
     @Published private(set) var isLoading: Bool = false
     
     
-    @Published var loginResult: LoginResponse? = nil   // ✅ Real result
-    @Published var errorMessage: String? = nil         // ✅ For failure
+    @Published var loginResult: LoginResponse? = nil
+    @Published var userResult: UserProfileResponse? = nil
+    @Published var errorMessage: String? = nil
     
     private let loginService: LoginServiceProtocol
     private var cancellables = Set<AnyCancellable>()
@@ -56,6 +57,27 @@ class LoginViewModel: ObservableObject {
                 }
             } receiveValue: { [weak self] response in
                 self?.loginResult = response // ✅ Set result here
+                
+                // Get User Profile
+                self?.fetchUserProfile(token: /self?.loginResult?.access_token)
+            }
+            .store(in: &cancellables)
+    }
+    
+    
+    func fetchUserProfile(token:String) {
+        isLoading = true
+        errorMessage = nil
+       
+        loginService.fetchProfile(token: token)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                self?.isLoading = false
+                if case .failure(let error) = completion {
+                    self?.errorMessage = ErrorMapper.message(for: error)
+                }
+            } receiveValue: { [weak self] response in
+                self?.userResult = response
             }
             .store(in: &cancellables)
     }

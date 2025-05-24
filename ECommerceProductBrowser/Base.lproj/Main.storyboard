@@ -201,7 +201,7 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPN-im-4b3">
                                 <rect key="frame" x="0.0" y="124" width="402" height="750"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Cm1-kP-jgb">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Cm1-kP-jgb">
                                         <rect key="frame" x="0.0" y="0.0" width="402" height="750"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z07-nm-eoz">
@@ -228,7 +228,7 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9s-hE-blC">
-                                                <rect key="frame" x="0.0" y="80" width="402" height="80"/>
+                                                <rect key="frame" x="0.0" y="66" width="402" height="80"/>
                                                 <subviews>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2bD-hT-QbX">
                                                         <rect key="frame" x="0.0" y="0.0" width="402" height="80"/>
@@ -256,10 +256,10 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uwa-6P-iba">
-                                                <rect key="frame" x="0.0" y="176" width="402" height="574"/>
+                                                <rect key="frame" x="0.0" y="148" width="402" height="602"/>
                                                 <subviews>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kvM-0h-cpJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="402" height="574"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="402" height="602"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="bYT-zo-NHk">
                                                             <size key="itemSize" width="128" height="128"/>
@@ -283,7 +283,7 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" name="clr_white"/>
+                                        <color key="backgroundColor" name="errorRed_clr"/>
                                     </stackView>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="Zom-Q9-P04"/>
@@ -312,7 +312,7 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1qV-fH-5fu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-704" y="-62"/>
+            <point key="canvasLocation" x="-845" y="-62"/>
         </scene>
     </scenes>
     <resources>
