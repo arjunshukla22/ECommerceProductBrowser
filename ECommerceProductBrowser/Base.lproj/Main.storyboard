@@ -319,12 +319,31 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                                                             <outlet property="delegate" destination="sva-nN-Ds4" id="cNR-bC-Oiu"/>
                                                         </connections>
                                                     </collectionView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DV-qB-G4m">
+                                                        <rect key="frame" x="0.0" y="0.0" width="402" height="602"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoDataFound" translatesAutoresizingMaskIntoConstraints="NO" id="L9V-0y-E7G">
+                                                                <rect key="frame" x="0.0" y="0.0" width="402" height="602"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="L9V-0y-E7G" firstAttribute="top" secondItem="2DV-qB-G4m" secondAttribute="top" id="3TM-pN-MFC"/>
+                                                            <constraint firstItem="L9V-0y-E7G" firstAttribute="leading" secondItem="2DV-qB-G4m" secondAttribute="leading" id="8Oc-Xz-6EF"/>
+                                                            <constraint firstAttribute="trailing" secondItem="L9V-0y-E7G" secondAttribute="trailing" id="9XR-Oh-LAc"/>
+                                                            <constraint firstAttribute="bottom" secondItem="L9V-0y-E7G" secondAttribute="bottom" id="FcG-rx-ZDF"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="kvM-0h-cpJ" secondAttribute="bottom" id="CH4-Dn-cY6"/>
                                                     <constraint firstAttribute="trailing" secondItem="kvM-0h-cpJ" secondAttribute="trailing" id="L0k-ay-jcl"/>
+                                                    <constraint firstItem="2DV-qB-G4m" firstAttribute="leading" secondItem="Uwa-6P-iba" secondAttribute="leading" id="LSZ-ex-GnY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="2DV-qB-G4m" secondAttribute="trailing" id="T3w-VD-4jq"/>
+                                                    <constraint firstItem="2DV-qB-G4m" firstAttribute="top" secondItem="Uwa-6P-iba" secondAttribute="top" id="WxE-vB-4vv"/>
                                                     <constraint firstItem="kvM-0h-cpJ" firstAttribute="leading" secondItem="Uwa-6P-iba" secondAttribute="leading" id="ekP-vZ-06c"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2DV-qB-G4m" secondAttribute="bottom" id="lZe-X4-kvk"/>
                                                     <constraint firstItem="kvM-0h-cpJ" firstAttribute="top" secondItem="Uwa-6P-iba" secondAttribute="top" id="lk5-CV-015"/>
                                                 </constraints>
                                             </view>
@@ -354,6 +373,7 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                     <connections>
                         <outlet property="collCategory" destination="2bD-hT-QbX" id="MUb-2Z-ixS"/>
                         <outlet property="collProducts" destination="kvM-0h-cpJ" id="Y9K-ZY-sLp"/>
+                        <outlet property="emptyStateView" destination="2DV-qB-G4m" id="Ciz-x1-EaK"/>
                         <outlet property="imgUser" destination="Bg4-GX-crj" id="wOA-Rr-k7J"/>
                         <outlet property="lblUserName" destination="Jxl-HB-kSm" id="yTI-Sq-Pda"/>
                         <outlet property="vWUser" destination="339-iU-u1Y" id="cdR-nZ-Ejh"/>
@@ -365,6 +385,7 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
         </scene>
     </scenes>
     <resources>
+        <image name="NoDataFound" width="320" height="320"/>
         <image name="eye_ON" width="20" height="14"/>
         <image name="filterIcon" width="24" height="24"/>
         <image name="user" width="10.666666984558105" height="10.666666984558105"/>

@@ -17,6 +17,8 @@ class HomeVC: UIViewController {
     @IBOutlet weak var lblUserName: UILabel!
     
     
+    @IBOutlet weak var emptyStateView: UIView!
+    
     @IBOutlet weak var collCategory: UICollectionView!
     @IBOutlet weak var collProducts: UICollectionView!
     
@@ -87,6 +89,8 @@ class HomeVC: UIViewController {
                 //print("Products updated:", products)
                 
                 self?.collProducts.reloadData()
+                // show/hide loader
+                self?.emptyStateView.isHidden = products.count > 0 ? true : false
             }
             .store(in: &cancellables)
         
@@ -102,8 +106,7 @@ class HomeVC: UIViewController {
         viewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoading in
-                // show/hide loader
-                print("Loading:", isLoading)
+               
             }
             .store(in: &cancellables)
         
