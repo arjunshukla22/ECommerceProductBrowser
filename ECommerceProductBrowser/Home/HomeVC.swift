@@ -10,6 +10,13 @@ import Combine
 
 class HomeVC: UIViewController {
     
+    
+    // User
+    @IBOutlet weak var vWUser: UIView!
+    @IBOutlet weak var imgUser: UIImageView!
+    @IBOutlet weak var lblUserName: UILabel!
+    
+    
     @IBOutlet weak var collCategory: UICollectionView!
     @IBOutlet weak var collProducts: UICollectionView!
     
@@ -17,10 +24,12 @@ class HomeVC: UIViewController {
     private let viewModel = HomeViewModel(homeService: HomeService())
     private var cancellables = Set<AnyCancellable>()
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpUI()
+        setUpUserInfo()
         
         setupCollVw()
         
@@ -33,8 +42,25 @@ class HomeVC: UIViewController {
         // Hide Navigation Bar
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
+        self.imgUser.layer.cornerRadius = self.imgUser.frame.size.height/2
+        self.imgUser.clipsToBounds = true
+        
+        self.imgUser.contentMode = .scaleAspectFit
+        
+    }
+    
+    
+    private func setUpUserInfo(){
+        
+        
         let retrievedUser : UserProfileResponse? = UserDefaultsManager.shared.loadUser()
-        debugPrint(/retrievedUser?.name)
+        
+        // User name
+        lblUserName.text = "Hi, \(/retrievedUser?.name)"
+        
+        // User image
+        let placeholderImg = UIImage(named: "user")
+        imgUser.sd_setImage(with: URL(string: /retrievedUser?.avatar), placeholderImage: placeholderImg)
         
     }
     
@@ -78,6 +104,14 @@ class HomeVC: UIViewController {
     }
     
     
+    @IBAction func actionTapUser(_ sender: Any) {
+        
+        // Push home screen
+        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "UserProfileVC") as? UserProfileVC {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 

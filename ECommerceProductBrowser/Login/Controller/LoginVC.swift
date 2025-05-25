@@ -24,6 +24,9 @@ class LoginVC: UIViewController {
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnShowHideSecurePasword: UIButton!
     
+    
+    
+    
     // Variables
     fileprivate var showPassword = false
     
