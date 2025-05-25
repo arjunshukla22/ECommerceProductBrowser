@@ -34,7 +34,7 @@
                         <rect key="frame" x="8" y="4" width="370" height="280"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wjw-8Q-y1N">
-                                <rect key="frame" x="8" y="8" width="354" height="195.33333333333334"/>
+                                <rect key="frame" x="8" y="8" width="354" height="216.33333333333334"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Umg-JQ-CeO">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="120"/>
@@ -55,7 +55,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="k4q-o3-KEw">
-                                        <rect key="frame" x="0.0" y="136" width="354" height="59.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="136" width="354" height="80.333333333333314"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIl-KL-Yzz">
                                                 <rect key="frame" x="0.0" y="0.0" width="354" height="17.333333333333332"/>
@@ -69,8 +69,14 @@
                                                 <color key="textColor" name="primaryColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shirt" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TL6-6e-tYu">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mV-A7-5CW">
                                                 <rect key="frame" x="0.0" y="44.333333333333343" width="354" height="15"/>
+                                                <fontDescription key="fontDescription" name="AvertaStd-SemiboldItalic" family="Averta Std" pointSize="12"/>
+                                                <color key="textColor" name="primaryColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shirt" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TL6-6e-tYu">
+                                                <rect key="frame" x="0.0" y="65.333333333333343" width="354" height="15"/>
                                                 <fontDescription key="fontDescription" name="AvertaStd-Regular" family="Averta Std" pointSize="12"/>
                                                 <color key="textColor" name="secondaryColor"/>
                                                 <nil key="highlightedColor"/>
@@ -100,6 +106,7 @@
             <size key="customSize" width="386" height="288"/>
             <connections>
                 <outlet property="img" destination="ZVL-Zs-Zfx" id="2nh-JH-3rE"/>
+                <outlet property="lblCategory" destination="6mV-A7-5CW" id="GcO-QG-h6d"/>
                 <outlet property="lblDescription" destination="TL6-6e-tYu" id="D67-Mf-RPn"/>
                 <outlet property="lblPrice" destination="WYg-Qd-S5f" id="VR5-yj-YcV"/>
                 <outlet property="lblTitle" destination="ZIl-KL-Yzz" id="0fk-zh-jBA"/>

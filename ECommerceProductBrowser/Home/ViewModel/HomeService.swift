@@ -12,7 +12,7 @@ import Alamofire
 
 protocol HomeServiceProtocol {
     func fetchCategories() -> AnyPublisher<[Category], NetworkError>
-    func fetchProducts(for categoryId: String) -> AnyPublisher<[Product], NetworkError>
+    func fetchProducts(with filter: FilterEntity) -> AnyPublisher<[Product], NetworkError>
 }
 
 class HomeService: HomeServiceProtocol {
@@ -30,15 +30,16 @@ class HomeService: HomeServiceProtocol {
                                       headers: nil)
     }
 
-    func fetchProducts(for categoryId: String) -> AnyPublisher<[Product], NetworkError> {
-        var param = [String:Any]()
-        if /Int(categoryId) > 0 {
-            param  = ["categoryId": categoryId]
-        }
+    func fetchProducts(with filter: FilterEntity) -> AnyPublisher<[Product], NetworkError> {
+        let parameters: [String: Any] = [
+                "categoryId": filter.category.id,
+                "price_min": filter.minValue,
+                "price_max": filter.maxValue
+            ]
         
         return networkManager.request(APIConstants.Products.product,
                                       method: .get,
-                                      parameters: param,
+                                      parameters: parameters,
                                       encoding: URLEncoding.default,
                                       headers: nil)
     }

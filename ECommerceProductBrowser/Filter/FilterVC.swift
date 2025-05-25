@@ -15,7 +15,7 @@ struct FilterEntity {
     var minValue : Int
     var maxValue : Int
     
-    init(category: Category, minValue: Int = 50 , maxValue: Int = 500) {
+    init(category: Category, minValue: Int = 10 , maxValue: Int = 500) {
         self.category = category
         self.minValue = minValue
         self.maxValue = maxValue
@@ -127,10 +127,12 @@ class FilterVC: UIViewController {
     
     @IBAction func actionApply(_ sender: Any) {
         
+        self.navigationController?.popViewController(animated: true)
+        
         if let filterData = filterData {
             onFilterApplied?(filterData)
         }
-        self.navigationController?.popViewController(animated: true)
+        
     }
     
     @IBAction func actionReset(_ sender: Any) {
@@ -140,7 +142,7 @@ class FilterVC: UIViewController {
             
             self.lblCategoryName.text = /defaultCategory.name
         }
-        rangeSliderCurrency.selectedMinValue = 50.0
+        rangeSliderCurrency.selectedMinValue = 10.0
         rangeSliderCurrency.selectedMaxValue = 500.0
         
         rangeSliderCurrency.setNeedsLayout()
@@ -156,9 +158,9 @@ extension FilterVC: RangeSeekSliderDelegate {
         
         // currency range slider
         rangeSliderCurrency.delegate = self
-        rangeSliderCurrency.minValue = 50.0
+        rangeSliderCurrency.minValue = 10.0
         rangeSliderCurrency.maxValue = 2000.0
-        rangeSliderCurrency.selectedMinValue = 50.0
+        rangeSliderCurrency.selectedMinValue = 10.0
         rangeSliderCurrency.selectedMaxValue = 500.0
         rangeSliderCurrency.minDistance = 20.0
         rangeSliderCurrency.maxDistance = 2200.0

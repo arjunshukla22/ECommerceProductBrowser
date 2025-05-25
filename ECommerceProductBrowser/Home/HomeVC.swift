@@ -21,7 +21,7 @@ class HomeVC: UIViewController {
     @IBOutlet weak var collProducts: UICollectionView!
     
     
-    private var userSelectedCategory : Category?
+    @Published var userSelectedCategory : Category?
     
     private let viewModel = HomeViewModel(homeService: HomeService())
     private var cancellables = Set<AnyCancellable>()
@@ -70,11 +70,13 @@ class HomeVC: UIViewController {
         viewModel.$categories
             .receive(on: DispatchQueue.main)
             .sink { [weak self] categories in
-               
-
+            
                 self?.userSelectedCategory = categories.first
                 
-                self?.collCategory.reloadData()
+                if let firstCategory = categories.first {
+                    var updatedFilter  = FilterEntity(category: firstCategory)
+                    self?.viewModel.filterData =  updatedFilter
+                }
             }
             .store(in: &cancellables)
         
@@ -104,6 +106,15 @@ class HomeVC: UIViewController {
                 print("Loading:", isLoading)
             }
             .store(in: &cancellables)
+        
+        
+        $userSelectedCategory
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] categories in
+                self?.collCategory.reloadData()
+            }
+            .store(in: &cancellables)
+            
     }
     
     
@@ -123,20 +134,23 @@ class HomeVC: UIViewController {
         if let vc = storyboard.instantiateViewController(withIdentifier: "FilterVC") as? FilterVC,
            let category = self.userSelectedCategory {
             vc.filterData = FilterEntity(category:category )
-            
             vc.onFilterApplied = { [weak self] filterData in
-             
-                debugPrint(filterData)
-                
-                
+                self?.getDataAfterFilerApplied(filterData:filterData)
             }
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    
+    fileprivate func getDataAfterFilerApplied(filterData:FilterEntity) {
+        
+        self.userSelectedCategory = filterData.category
+       
+        self.viewModel.filterData =  filterData
+        
+    }
 
 }
-
-
 
 // MARK: Collection view Delegate & Data Source
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -147,11 +161,10 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         case collCategory:
             return CGSize(width: 80, height: 80)
         case collProducts:
-            return CGSize(width: collectionView.frame.size.width/2, height: 240)
+            return CGSize(width: collectionView.frame.size.width/2, height: 260)
         default:
             return CGSizeZero
         }
-        
         
     }
     
@@ -174,6 +187,10 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             
             let category = viewModel.categories[indexPath.item]
             cell.bindCellData(category: category)
+    
+            cell.vWCell.backgroundColor = self.userSelectedCategory?.name == category.name ? ColorUtility.selectedCell_bgColor : ColorUtility.clr_white
+            
+            cell.lblTitle.font = self.userSelectedCategory?.name == category.name ? AppFont.bold.font(size: 12) : AppFont.regular.font(size: 12)
             
             return cell
         case collProducts:
@@ -192,11 +209,13 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         
         switch collectionView {
         case collCategory:
-            let selected = viewModel.categories[indexPath.item]
-            
+            let selected : Category = viewModel.categories[indexPath.item]
             userSelectedCategory = selected
+                
+            var updatedFilter  = self.viewModel.filterData
+            updatedFilter?.category = selected
+            self.viewModel.filterData =  updatedFilter
             
-            viewModel.selectedCategoryId = "\(selected.id)"
             
         case collProducts:break
         default:break

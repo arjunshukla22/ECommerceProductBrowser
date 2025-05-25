@@ -14,6 +14,7 @@ class ProductCVC: UICollectionViewCell {
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var lblCategory: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var img: UIImageView!
     
@@ -37,7 +38,8 @@ class ProductCVC: UICollectionViewCell {
     func bindCellData(product:Product) {
         
         self.lblTitle.text = product.title
-        self.lblPrice.text = "$ \(product.price)" + " \(product.category.name)"
+        self.lblPrice.text = "\(MsgConst.kSymbolDollar) \(product.price)"
+        self.lblCategory.text = product.category.name
         self.lblDescription.text = product.description
         
     
