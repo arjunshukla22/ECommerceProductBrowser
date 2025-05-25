@@ -21,6 +21,8 @@ class HomeVC: UIViewController {
     @IBOutlet weak var collProducts: UICollectionView!
     
     
+    private var userSelectedCategory : Category?
+    
     private let viewModel = HomeViewModel(homeService: HomeService())
     private var cancellables = Set<AnyCancellable>()
     
@@ -68,8 +70,9 @@ class HomeVC: UIViewController {
         viewModel.$categories
             .receive(on: DispatchQueue.main)
             .sink { [weak self] categories in
-                // reload your category collection/table view
-               // print("Categories updated:", categories)
+               
+
+                self?.userSelectedCategory = categories.first
                 
                 self?.collCategory.reloadData()
             }
@@ -112,6 +115,25 @@ class HomeVC: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    @IBAction func actionTapFilter(_ sender: Any) {
+        
+        // Push home screen
+        let storyboard = UIStoryboard(name: "Filter", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "FilterVC") as? FilterVC,
+           let category = self.userSelectedCategory {
+            vc.filterData = FilterEntity(category:category )
+            
+            vc.onFilterApplied = { [weak self] filterData in
+             
+                debugPrint(filterData)
+                
+                
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+
 }
 
 
@@ -171,6 +193,9 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         switch collectionView {
         case collCategory:
             let selected = viewModel.categories[indexPath.item]
+            
+            userSelectedCategory = selected
+            
             viewModel.selectedCategoryId = "\(selected.id)"
             
         case collProducts:break

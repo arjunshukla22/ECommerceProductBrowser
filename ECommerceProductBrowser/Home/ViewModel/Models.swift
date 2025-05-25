@@ -14,6 +14,7 @@ struct Category: Decodable, Identifiable {
     let name, slug: String
     let image: String
     let creationAt, updatedAt: String
+    
 }
 
 struct Product: Decodable, Identifiable {

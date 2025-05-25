@@ -181,6 +181,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardToolbar/IQKeyboardToolbar.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardToolbarManager/IQKeyboardToolbarManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQTextInputViewNotification/IQTextInputViewNotification.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RangeSeekSlider/RangeSeekSlider.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -189,6 +190,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardToolbar/IQKeyboardToolbar.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardToolbarManager/IQKeyboardToolbarManager.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQTextInputViewNotification/IQTextInputViewNotification.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RangeSeekSlider/RangeSeekSlider.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

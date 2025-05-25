@@ -11,6 +11,7 @@ target 'ECommerceProductBrowser' do
   pod 'IQKeyboardToolbarManager'
   pod 'SDWebImage'
   pod 'Alamofire'
+  pod 'RangeSeekSlider'
 
   target 'ECommerceProductBrowserTests' do
     inherit! :search_paths

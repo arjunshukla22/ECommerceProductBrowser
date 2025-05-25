@@ -65,11 +65,15 @@
 		};
 		DC2002AB2DE0BAD500CE5AEE /* ECommerceProductBrowserTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = ECommerceProductBrowserTests;
 			sourceTree = "<group>";
 		};
 		DC2002B52DE0BAD500CE5AEE /* ECommerceProductBrowserUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = ECommerceProductBrowserUITests;
 			sourceTree = "<group>";
 		};
@@ -295,13 +299,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ECommerceProductBrowser/Pods-ECommerceProductBrowser-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ECommerceProductBrowser/Pods-ECommerceProductBrowser-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -360,13 +360,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ECommerceProductBrowser-ECommerceProductBrowserUITests/Pods-ECommerceProductBrowser-ECommerceProductBrowserUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ECommerceProductBrowser-ECommerceProductBrowserUITests/Pods-ECommerceProductBrowser-ECommerceProductBrowserUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -459,6 +455,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ArjunShukla.ECommerceProductBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/arjun/Desktop/ECommerceProductBrowser/ECommerceProductBrowser/ThirdParty/Bridgeing/ECommerceProductBrowser-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -488,6 +485,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ArjunShukla.ECommerceProductBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/arjun/Desktop/ECommerceProductBrowser/ECommerceProductBrowser/ThirdParty/Bridgeing/ECommerceProductBrowser-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

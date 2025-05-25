@@ -4,4 +4,5 @@ ${BUILT_PRODUCTS_DIR}/IQKeyboardCore/IQKeyboardCore.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardToolbar/IQKeyboardToolbar.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardToolbarManager/IQKeyboardToolbarManager.framework
 ${BUILT_PRODUCTS_DIR}/IQTextInputViewNotification/IQTextInputViewNotification.framework
+${BUILT_PRODUCTS_DIR}/RangeSeekSlider/RangeSeekSlider.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework

@@ -14,6 +14,7 @@ PODS:
     - IQTextInputViewNotification
   - IQTextInputViewNotification (1.0.8):
     - IQKeyboardCore
+  - RangeSeekSlider (1.8.0)
   - SDWebImage (5.21.0):
     - SDWebImage/Core (= 5.21.0)
   - SDWebImage/Core (5.21.0)
@@ -21,6 +22,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - IQKeyboardToolbarManager
+  - RangeSeekSlider
   - SDWebImage
 
 SPEC REPOS:
@@ -30,6 +32,7 @@ SPEC REPOS:
     - IQKeyboardToolbar
     - IQKeyboardToolbarManager
     - IQTextInputViewNotification
+    - RangeSeekSlider
     - SDWebImage
 
 SPEC CHECKSUMS:
@@ -38,8 +41,9 @@ SPEC CHECKSUMS:
   IQKeyboardToolbar: d4bdccfb78324aec2f3920659c77bb89acd33312
   IQKeyboardToolbarManager: 6c693c8478d6327a7ef2107528d29698b3514dbb
   IQTextInputViewNotification: f5e954d8881fd9808b744e49e024cc0d4bcfe572
+  RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   SDWebImage: f84b0feeb08d2d11e6a9b843cb06d75ebf5b8868
 
-PODFILE CHECKSUM: f751dd1f50d08b4299a11114e8269369eb032c05
+PODFILE CHECKSUM: 430f6a79efd22572c6d63831ab4e2790d0b42cf7
 
 COCOAPODS: 1.16.2

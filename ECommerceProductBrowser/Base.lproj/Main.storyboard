@@ -255,6 +255,9 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="64"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="filterIcon"/>
+                                                                <connections>
+                                                                    <action selector="actionTapFilter:" destination="sva-nN-Ds4" eventType="touchUpInside" id="3k3-mY-Opg"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
