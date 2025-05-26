@@ -22,6 +22,9 @@ class HomeVC: UIViewController {
     @IBOutlet weak var collCategory: UICollectionView!
     @IBOutlet weak var collProducts: UICollectionView!
     
+    @IBOutlet weak var mainShimmerVw : UIView!
+    @IBOutlet weak var innerShimmVw : UIView!
+    
     
     @Published var userSelectedCategory : Category?
     
@@ -88,9 +91,16 @@ class HomeVC: UIViewController {
                 // reload your product collection/table view
                 //print("Products updated:", products)
                 
+                debugPrint("Loading status:\(/self?.viewModel.isLoading)")
+                debugPrint("products Count:\(/products.count)")
+                
                 self?.collProducts.reloadData()
-                // show/hide loader
-                self?.emptyStateView.isHidden = products.count > 0 ? true : false
+                
+                if /self?.viewModel.isLoading == false {
+                    // show/hide loader
+                    self?.emptyStateView.isHidden = products.count > 0 ? true : false
+                }
+        
             }
             .store(in: &cancellables)
         
@@ -106,7 +116,11 @@ class HomeVC: UIViewController {
         viewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoading in
-               
+                
+                if let mainView = self?.mainShimmerVw,let innerView = self?.innerShimmVw {
+                    self?.ShowShimmerOrNot(isShow: isLoading, vWMain: mainView , vWInner: innerView)
+                }
+                
             }
             .store(in: &cancellables)
         

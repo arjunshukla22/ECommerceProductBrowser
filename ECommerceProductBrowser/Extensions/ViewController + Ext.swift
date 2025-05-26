@@ -18,3 +18,22 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
+
+extension UIViewController {
+    
+    func ShowShimmerOrNot(isShow:Bool, vWMain:UIView, vWInner:UIView) {
+        if isShow == false {
+            vWInner.stopShimmeringAnimation()
+            vWInner.isHidden = true
+            vWMain.isHidden = true
+            
+        }else{
+            //            vWInner.layoutIfNeeded()
+            //            vWInner.layoutSubviews()
+            vWInner.startShimmeringAnimation(direction: .leftToRight)
+            vWInner.isHidden = false
+            vWMain.isHidden = false
+        }
+    }
+    
+}
