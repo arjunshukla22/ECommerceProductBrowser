@@ -249,10 +249,10 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzv-Xe-sw9">
-                                                        <rect key="frame" x="362" y="0.0" width="24" height="64"/>
+                                                        <rect key="frame" x="386" y="0.0" width="0.0" height="64"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBB-ag-WFO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="24" height="64"/>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBB-ag-WFO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="24"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="filterIcon"/>
                                                                 <connections>
@@ -1303,6 +1303,7 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnFilter" destination="UBB-ag-WFO" id="dre-Ij-ui7"/>
                         <outlet property="collCategory" destination="2bD-hT-QbX" id="MUb-2Z-ixS"/>
                         <outlet property="collProducts" destination="kvM-0h-cpJ" id="Y9K-ZY-sLp"/>
                         <outlet property="emptyStateView" destination="2DV-qB-G4m" id="Ciz-x1-EaK"/>
@@ -1315,7 +1316,7 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1qV-fH-5fu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-319.40298507462683" y="-53.546910755148737"/>
+            <point key="canvasLocation" x="-655" y="-62"/>
         </scene>
     </scenes>
     <resources>

@@ -60,7 +60,7 @@ class HomeViewModel: ObservableObject {
     }
     
     // MARK: - API: Fetch Products
-    private func fetchProducts(with filter: FilterEntity) {
+     func fetchProducts(with filter: FilterEntity) {
         isLoading = true
         errorMessage = nil
         

@@ -18,6 +18,9 @@ class HomeVC: UIViewController {
     @IBOutlet weak var lblUserName: UILabel!
     
     
+    @IBOutlet weak var btnFilter: UIButton!
+    
+    
     @IBOutlet weak var emptyStateView: UIView!
     
     @IBOutlet weak var collCategory: UICollectionView!
@@ -56,6 +59,13 @@ class HomeVC: UIViewController {
                 if isConnected && self?.viewModel.categories.count == 0{
                     self?.viewModel.fetchCategories()
                 }
+                else if isConnected && self?.viewModel.products.count == 0 {
+                    
+                    if let filter = self?.viewModel.filterData {
+                        self?.viewModel.fetchProducts(with: filter)
+                    }
+                }
+                            
             }
             .store(in: &cancellables)
     }
@@ -97,6 +107,9 @@ class HomeVC: UIViewController {
                 if let firstCategory = categories.first {
                     var updatedFilter  = FilterEntity(category: firstCategory)
                     self?.viewModel.filterData =  updatedFilter
+                    
+                    
+                    self?.btnFilter.isHidden = /self?.viewModel.categories.count > 0 ? false : true
                 }
             }
             .store(in: &cancellables)
