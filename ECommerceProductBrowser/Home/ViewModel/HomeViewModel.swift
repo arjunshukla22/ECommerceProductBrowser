@@ -48,7 +48,7 @@ class HomeViewModel: ObservableObject {
         
         homeService.fetchCategories()
             .sink(receiveCompletion: { [weak self] completion in
-                self?.isLoading = false
+               // self?.isLoading = false
                 if case .failure(let error) = completion {
                     self?.errorMessage = ErrorMapper.message(for: error)
                 }

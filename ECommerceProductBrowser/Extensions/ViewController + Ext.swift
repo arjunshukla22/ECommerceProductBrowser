@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import TTGSnackbar
 
 extension UIViewController {
     func showAlert(title: String, message: String, okTitle: String = "Okay", handler: (() -> Void)? = nil) {
@@ -18,6 +19,24 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
+
+extension UIViewController {
+    
+    func showSnackBar(msg:String) {
+        
+        let snackbar = TTGSnackbar()
+        snackbar.message = msg
+        snackbar.duration = .long
+        snackbar.leftMargin = 16
+        snackbar.rightMargin = 16
+        snackbar.backgroundColor = ColorUtility.primaryColor
+        
+        snackbar.show()
+    }
+    
+}
+
+
 
 extension UIViewController {
     

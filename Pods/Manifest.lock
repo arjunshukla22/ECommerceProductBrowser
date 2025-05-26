@@ -18,12 +18,14 @@ PODS:
   - SDWebImage (5.21.0):
     - SDWebImage/Core (= 5.21.0)
   - SDWebImage/Core (5.21.0)
+  - TTGSnackbar (1.12.0)
 
 DEPENDENCIES:
   - Alamofire
   - IQKeyboardToolbarManager
   - RangeSeekSlider
   - SDWebImage
+  - TTGSnackbar
 
 SPEC REPOS:
   trunk:
@@ -34,6 +36,7 @@ SPEC REPOS:
     - IQTextInputViewNotification
     - RangeSeekSlider
     - SDWebImage
+    - TTGSnackbar
 
 SPEC CHECKSUMS:
   Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
@@ -43,7 +46,8 @@ SPEC CHECKSUMS:
   IQTextInputViewNotification: f5e954d8881fd9808b744e49e024cc0d4bcfe572
   RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   SDWebImage: f84b0feeb08d2d11e6a9b843cb06d75ebf5b8868
+  TTGSnackbar: 8e7650b9b1f5f44e40228473455986f5c12213c7
 
-PODFILE CHECKSUM: 430f6a79efd22572c6d63831ab4e2790d0b42cf7
+PODFILE CHECKSUM: 641c698f5b707e6d79bdd2b345563bb2f5eabb90
 
 COCOAPODS: 1.16.2

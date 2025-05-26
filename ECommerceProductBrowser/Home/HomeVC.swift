@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import TTGSnackbar
 
 class HomeVC: UIViewController {
     
@@ -41,8 +42,23 @@ class HomeVC: UIViewController {
         setupCollVw()
         
         bindViewModel()
+        
+        bindInternetModel()
     }
     
+    private func bindInternetModel() {
+        NetworkMonitor.shared.$isConnected
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isConnected in
+               
+                self?.showSnackBar(msg: isConnected ? "Connected to Internet" : "No Internet Connection")
+                
+                if isConnected && self?.viewModel.categories.count == 0{
+                    self?.viewModel.fetchCategories()
+                }
+            }
+            .store(in: &cancellables)
+    }
     
     private func setUpUI(){
         
@@ -110,6 +126,7 @@ class HomeVC: UIViewController {
             .sink { [weak self] error in
                 // Show an alert or label
                 print("Error: \(error)")
+                
             }
             .store(in: &cancellables)
         

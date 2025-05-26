@@ -12,6 +12,7 @@ target 'ECommerceProductBrowser' do
   pod 'SDWebImage'
   pod 'Alamofire'
   pod 'RangeSeekSlider'
+  pod "TTGSnackbar"
 
   target 'ECommerceProductBrowserTests' do
     inherit! :search_paths
