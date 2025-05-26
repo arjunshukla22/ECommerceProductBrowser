@@ -30,6 +30,13 @@ class HomeVC: UIViewController {
     @IBOutlet weak var innerShimmVw : UIView!
     
     
+    @IBOutlet weak var vWMainSearch: UIView!
+    @IBOutlet weak var btnSearchOL: UIButton!
+    @IBOutlet weak var vWSearch: UIView!
+    @IBOutlet weak var txtFldSearch: UITextField!
+    @IBOutlet weak var btnSearchCancel: UIButton!
+    
+    
     @Published var userSelectedCategory : Category?
     
     private let viewModel = HomeViewModel(homeService: HomeService())
@@ -47,8 +54,63 @@ class HomeVC: UIViewController {
         bindViewModel()
         
         bindInternetModel()
+        
+        SetUpSearchView()
     }
     
+    
+    func SetUpSearchView(){
+       
+        self.vWMainSearch.isHidden = true
+        
+        self.vWSearch.layer.borderColor = ColorUtility.primaryColor.cgColor
+        self.vWSearch.layer.borderWidth = 1
+        self.vWSearch.layer.cornerRadius = 8
+        
+//        txtFldSearch.delegate = self
+//        
+//        txtFldSearch.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+//        txtFldSearch.addTarget(self, action: #selector(self.textFieldDidEND(_:)), for: .editingDidEnd)
+        
+        txtFldSearch.attributedPlaceholder = NSAttributedString(
+            string: "Try Searching product",
+            attributes: [NSAttributedString.Key.foregroundColor: ColorUtility.secondaryColor]
+        )
+        
+        self.collProducts.keyboardDismissMode = .onDrag;
+        
+        
+        txtFldSearch.textPublisher
+            .map { /$0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] searchText in
+               
+                print("Search Text: \(searchText)")
+                
+                self?.btnSearchCancel.isHidden = searchText.isEmpty
+                
+                self?.viewModel.searchQuery = searchText
+
+               // self?.viewModel.searchQuery = searchText
+            }
+            .store(in: &cancellables)
+    }
+    
+    @IBAction func actionInnerSearchCross(_ sender: Any) {
+        self.txtFldSearch.text = ""
+        self.viewModel.searchQuery = ""
+        self.btnSearchCancel.isHidden = true
+    }
+    
+    @IBAction func actionTapSearch(_ sender: Any) {
+        self.vWMainSearch.isHidden = false
+    }
+    
+    @IBAction func actionCancelSearchVw(_ sender: Any) {
+        self.vWMainSearch.isHidden = true
+    }
+    
+
     private func bindInternetModel() {
         NetworkMonitor.shared.$isConnected
             .receive(on: DispatchQueue.main)
@@ -105,7 +167,7 @@ class HomeVC: UIViewController {
                 self?.userSelectedCategory = categories.first
                 
                 if let firstCategory = categories.first {
-                    var updatedFilter  = FilterEntity(category: firstCategory)
+                    let updatedFilter  = FilterEntity(category: firstCategory)
                     self?.viewModel.filterData =  updatedFilter
                     
                     
@@ -114,7 +176,7 @@ class HomeVC: UIViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.$products
+        viewModel.$filteredProducts
             .receive(on: DispatchQueue.main)
             .sink { [weak self] products in
                 // reload your product collection/table view
@@ -163,6 +225,10 @@ class HomeVC: UIViewController {
             .store(in: &cancellables)
             
     }
+    
+    
+    
+    
     
     
     @IBAction func actionTapUser(_ sender: Any) {
@@ -220,7 +286,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         case collCategory:
             return self.viewModel.categories.count
         case collProducts:
-            return self.viewModel.products.count
+            return self.viewModel.filteredProducts.count
         default:return 0
         }
     }
@@ -242,7 +308,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             return cell
         case collProducts:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCVC", for: indexPath) as? ProductCVC else { return UICollectionViewCell() }
-            let product = viewModel.products[indexPath.item]
+            let product = viewModel.filteredProducts[indexPath.item]
             cell.bindCellData(product: product)
             
             return cell

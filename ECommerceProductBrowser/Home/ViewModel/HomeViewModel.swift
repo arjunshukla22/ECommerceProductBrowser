@@ -13,6 +13,8 @@ class HomeViewModel: ObservableObject {
     // MARK: - Published Properties
     @Published private(set) var categories: [Category] = []
     @Published private(set) var products: [Product] = []
+    @Published var searchQuery: String = ""
+    @Published private(set) var filteredProducts: [Product] = []
     @Published private(set) var isLoading: Bool = false
     @Published var filterData: FilterEntity?
     @Published var errorMessage: String? = nil
@@ -39,6 +41,15 @@ class HomeViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        
+        $searchQuery
+            .combineLatest($products)
+            .map { query, products in
+                guard !query.isEmpty else { return products }
+                return products.filter { $0.title.lowercased().contains(query.lowercased()) }
+            }
+            .receive(on: RunLoop.main)
+            .assign(to: &$filteredProducts)
     }
     
     // MARK: - API: Fetch Categories

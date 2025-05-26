@@ -201,14 +201,14 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPN-im-4b3">
                                 <rect key="frame" x="0.0" y="124" width="402" height="750"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Cm1-kP-jgb">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Cm1-kP-jgb">
                                         <rect key="frame" x="0.0" y="0.0" width="402" height="750"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z07-nm-eoz">
-                                                <rect key="frame" x="0.0" y="0.0" width="402" height="64"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="402" height="36"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="339-iU-u1Y">
-                                                        <rect key="frame" x="16" y="14" width="44" height="36"/>
+                                                        <rect key="frame" x="16" y="0.0" width="44" height="36"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="BoT-su-Xpb">
                                                                 <rect key="frame" x="0.0" y="2" width="44" height="32"/>
@@ -249,10 +249,20 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wzv-Xe-sw9">
-                                                        <rect key="frame" x="386" y="0.0" width="0.0" height="64"/>
+                                                        <rect key="frame" x="346" y="0.0" width="40" height="36"/>
                                                         <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFy-Bc-GLQ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="40" height="36"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="40" id="Sgr-Bb-xAW"/>
+                                                                </constraints>
+                                                                <state key="normal" image="searchIcon"/>
+                                                                <connections>
+                                                                    <action selector="actionTapSearch:" destination="sva-nN-Ds4" eventType="touchUpInside" id="Hws-Xu-gYV"/>
+                                                                </connections>
+                                                            </button>
                                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBB-ag-WFO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="24"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="36"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="filterIcon"/>
                                                                 <connections>
@@ -264,17 +274,108 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="339-iU-u1Y" secondAttribute="bottom" id="6Yv-db-uFe"/>
                                                     <constraint firstItem="Wzv-Xe-sw9" firstAttribute="top" secondItem="z07-nm-eoz" secondAttribute="top" id="D70-fh-IUO"/>
-                                                    <constraint firstAttribute="height" constant="64" id="MaX-J1-7Te"/>
+                                                    <constraint firstItem="339-iU-u1Y" firstAttribute="top" secondItem="z07-nm-eoz" secondAttribute="top" id="RWG-Dg-fHF"/>
                                                     <constraint firstItem="339-iU-u1Y" firstAttribute="leading" secondItem="z07-nm-eoz" secondAttribute="leading" constant="16" id="XGw-6b-whe"/>
                                                     <constraint firstItem="339-iU-u1Y" firstAttribute="centerY" secondItem="z07-nm-eoz" secondAttribute="centerY" id="aak-17-gdu"/>
-                                                    <constraint firstItem="Wzv-Xe-sw9" firstAttribute="centerY" secondItem="z07-nm-eoz" secondAttribute="centerY" id="gQy-6W-pAh"/>
+                                                    <constraint firstItem="Wzv-Xe-sw9" firstAttribute="centerY" secondItem="339-iU-u1Y" secondAttribute="centerY" id="gtb-8o-31u"/>
                                                     <constraint firstAttribute="bottom" secondItem="Wzv-Xe-sw9" secondAttribute="bottom" id="hWI-bS-wXa"/>
                                                     <constraint firstAttribute="trailing" secondItem="Wzv-Xe-sw9" secondAttribute="trailing" constant="16" id="wmd-zg-Hib"/>
                                                 </constraints>
                                             </view>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qGx-hz-HxE">
+                                                <rect key="frame" x="0.0" y="44" width="402" height="46"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wfg-CN-wli">
+                                                        <rect key="frame" x="16" y="0.0" width="370" height="46"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JoG-nd-H9R">
+                                                                <rect key="frame" x="0.0" y="0.0" width="302" height="46"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFf-Zt-FF5">
+                                                                        <rect key="frame" x="4" y="6" width="288" height="34"/>
+                                                                        <subviews>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="vjY-oa-6Fa">
+                                                                                <rect key="frame" x="16" y="2" width="264" height="30"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Try Searching topic" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IKb-5W-h58">
+                                                                                        <rect key="frame" x="0.0" y="5.6666666666666572" width="264" height="19"/>
+                                                                                        <color key="tintColor" red="0.23529411759999999" green="0.28235294119999998" blue="0.32156862749999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        <color key="textColor" name="primaryColor"/>
+                                                                                        <fontDescription key="fontDescription" name="AvertaStd-Regular" family="Averta Std" pointSize="14"/>
+                                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                                                            <fontDescription key="fontDescription" name="AvertaStd-Regular" family="Averta Std" pointSize="16"/>
+                                                                                        </variation>
+                                                                                    </textField>
+                                                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXl-5L-hJ2">
+                                                                                        <rect key="frame" x="0.0" y="5" width="20" height="20"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="20" id="S8M-VW-z8i"/>
+                                                                                            <constraint firstAttribute="width" constant="20" id="Ubx-FR-tXU"/>
+                                                                                        </constraints>
+                                                                                        <state key="normal" image="SearchCross"/>
+                                                                                        <connections>
+                                                                                            <action selector="actionInnerSearchCross:" destination="sva-nN-Ds4" eventType="touchUpInside" id="rkU-40-7a4"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="trailing" secondItem="vjY-oa-6Fa" secondAttribute="trailing" constant="8" id="V68-RK-Ecu"/>
+                                                                            <constraint firstItem="vjY-oa-6Fa" firstAttribute="leading" secondItem="yFf-Zt-FF5" secondAttribute="leading" constant="16" id="bD0-mD-04J"/>
+                                                                            <constraint firstItem="vjY-oa-6Fa" firstAttribute="top" secondItem="yFf-Zt-FF5" secondAttribute="top" constant="2" id="g1N-7W-Xzb"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="vjY-oa-6Fa" secondAttribute="bottom" constant="2" id="oID-vI-U3c"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="yFf-Zt-FF5" firstAttribute="top" secondItem="JoG-nd-H9R" secondAttribute="top" constant="6" id="4tk-HR-n6d"/>
+                                                                    <constraint firstItem="yFf-Zt-FF5" firstAttribute="leading" secondItem="JoG-nd-H9R" secondAttribute="leading" constant="4" id="VGj-RV-ykz"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="yFf-Zt-FF5" secondAttribute="trailing" constant="10" id="lLd-bd-jVe"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="yFf-Zt-FF5" secondAttribute="bottom" constant="6" id="wRV-TL-fO5"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YL-df-5ZA">
+                                                                <rect key="frame" x="310" y="0.0" width="60" height="46"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="60" id="v4h-AD-Pnb">
+                                                                        <variation key="heightClass=regular-widthClass=regular" constant="80"/>
+                                                                    </constraint>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="AvertaStd-Bold" family="Averta Std" pointSize="12"/>
+                                                                <color key="tintColor" red="0.98039215690000003" green="0.4823529412" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <state key="normal" title="CANCEL">
+                                                                    <color key="titleColor" name="primaryColor"/>
+                                                                </state>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" name="AvertaStd-Bold" family="Averta Std" pointSize="14"/>
+                                                                </variation>
+                                                                <connections>
+                                                                    <action selector="actionCancelSearchVw:" destination="sva-nN-Ds4" eventType="touchUpInside" id="QKK-m1-RVK"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="46" id="Jik-EF-ra7"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="Wfg-CN-wli" firstAttribute="top" secondItem="qGx-hz-HxE" secondAttribute="top" id="0sb-UI-Amq"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Wfg-CN-wli" secondAttribute="trailing" constant="16" id="gvL-Bt-xfG"/>
+                                                    <constraint firstItem="Wfg-CN-wli" firstAttribute="leading" secondItem="qGx-hz-HxE" secondAttribute="leading" constant="16" id="kmZ-u5-XgM"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Wfg-CN-wli" secondAttribute="bottom" id="xg3-kT-MfK"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9s-hE-blC">
-                                                <rect key="frame" x="0.0" y="66" width="402" height="80"/>
+                                                <rect key="frame" x="0.0" y="52" width="402" height="80"/>
                                                 <subviews>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2bD-hT-QbX">
                                                         <rect key="frame" x="0.0" y="0.0" width="402" height="80"/>
@@ -1304,6 +1405,8 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                     </view>
                     <connections>
                         <outlet property="btnFilter" destination="UBB-ag-WFO" id="dre-Ij-ui7"/>
+                        <outlet property="btnSearchCancel" destination="rXl-5L-hJ2" id="8al-Uo-6hI"/>
+                        <outlet property="btnSearchOL" destination="FFy-Bc-GLQ" id="wlx-6V-AHq"/>
                         <outlet property="collCategory" destination="2bD-hT-QbX" id="MUb-2Z-ixS"/>
                         <outlet property="collProducts" destination="kvM-0h-cpJ" id="Y9K-ZY-sLp"/>
                         <outlet property="emptyStateView" destination="2DV-qB-G4m" id="Ciz-x1-EaK"/>
@@ -1311,6 +1414,9 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
                         <outlet property="innerShimmVw" destination="9bl-kf-Jfl" id="eVg-e8-j6g"/>
                         <outlet property="lblUserName" destination="Jxl-HB-kSm" id="yTI-Sq-Pda"/>
                         <outlet property="mainShimmerVw" destination="Hwu-0q-NBY" id="bay-wf-v0B"/>
+                        <outlet property="txtFldSearch" destination="IKb-5W-h58" id="i8b-w0-dhn"/>
+                        <outlet property="vWMainSearch" destination="qGx-hz-HxE" id="VF2-ge-bKw"/>
+                        <outlet property="vWSearch" destination="JoG-nd-H9R" id="ZBF-Ys-DuE"/>
                         <outlet property="vWUser" destination="339-iU-u1Y" id="cdR-nZ-Ejh"/>
                     </connections>
                 </viewController>
@@ -1321,8 +1427,10 @@ RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
     </scenes>
     <resources>
         <image name="NoDataFound" width="320" height="320"/>
+        <image name="SearchCross" width="24" height="24"/>
         <image name="eye_ON" width="20" height="14"/>
         <image name="filterIcon" width="24" height="24"/>
+        <image name="searchIcon" width="17.666666030883789" height="17.666666030883789"/>
         <image name="user" width="10.666666984558105" height="10.666666984558105"/>
         <namedColor name="clr_white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
