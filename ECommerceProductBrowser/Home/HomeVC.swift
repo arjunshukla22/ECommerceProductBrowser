@@ -35,6 +35,9 @@ class HomeVC: UIViewController {
     var selectedProduct : Product?
     private var refresher: CollectionViewRefresher?
     
+    private var isPullToRefreshEnabled: Bool = false
+    private var isScreenVisit: Bool = false
+    
     @Published var userSelectedCategory : Category?
     
     private let viewModel = HomeViewModel(homeService: HomeService())
@@ -135,23 +138,26 @@ class HomeVC: UIViewController {
     
     
     private func bindInternetModel() {
-        NetworkMonitor.shared.$isConnected
-            .dropFirst()
+        
+        
+        NetworkMonitor.shared.connectionStatusPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isConnected in
                 
-                self?.showSnackBar(msg: isConnected ? "Connected to Internet" : "No Internet Connection")
-                
-                if isConnected && self?.viewModel.categories.count == 0{
-                    self?.viewModel.fetchCategories()
-                }
-                else if isConnected && self?.viewModel.products.count == 0 {
+                if /self?.isScreenVisit {
+                    self?.showSnackBar(msg: isConnected ? "Connected to Internet" : "No Internet Connection")
                     
-                    if let filter = self?.viewModel.filterData {
-                        self?.viewModel.fetchProducts(with: filter)
+                    if isConnected && self?.viewModel.categories.count == 0{
+                        self?.viewModel.fetchCategories()
                     }
-                }
-                
+                    else if isConnected && self?.viewModel.products.count == 0 {
+                        
+                        if let filter = self?.viewModel.filterData {
+                            self?.viewModel.fetchProducts(with: filter)
+                        }
+                    }
+                }else
+                {self?.isScreenVisit=true}
             }
             .store(in: &cancellables)
     }
@@ -168,6 +174,10 @@ class HomeVC: UIViewController {
         
         
         refresher = CollectionViewRefresher(for: collProducts) { [weak self] in
+            
+            // Active Pull to Refresh Enabled
+            self?.isPullToRefreshEnabled = true
+            
             if let filter = self?.viewModel.filterData {
                 self?.viewModel.fetchProducts(with: filter)
             }
@@ -235,6 +245,8 @@ class HomeVC: UIViewController {
                 // Show an alert or label
                 // print("Error: \(self?.error)")
                 
+                self?.showAlert(title: "Error", message: error.description)
+                
             }
             .store(in: &cancellables)
         
@@ -243,7 +255,9 @@ class HomeVC: UIViewController {
             .sink { [weak self] isLoading in
                 
                 if let mainView = self?.mainShimmerVw,let innerView = self?.innerShimmVw {
-                    self?.ShowShimmerOrNot(isShow: isLoading, vWMain: mainView , vWInner: innerView)
+                    self?.ShowShimmerOrNot(isShow: self!.isPullToRefreshEnabled ? false : isLoading, vWMain: mainView , vWInner: innerView)
+                    // InActive Pull to Refresh Enabled
+                    self?.isPullToRefreshEnabled = false
                 }
                 
             }

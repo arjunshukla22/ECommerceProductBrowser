@@ -17,6 +17,14 @@ final class NetworkMonitor: ObservableObject {
 
     @Published private(set) var isConnected: Bool = true
 
+    // Shared publisher that emits distinct values and shares the stream
+    lazy var connectionStatusPublisher: AnyPublisher<Bool, Never> = {
+        $isConnected
+            .removeDuplicates()
+            .share()
+            .eraseToAnyPublisher()
+    }()
+
     private init() {
         monitor.pathUpdateHandler = { [weak self] path in
             DispatchQueue.main.async {
@@ -26,3 +34,4 @@ final class NetworkMonitor: ObservableObject {
         monitor.start(queue: queue)
     }
 }
+

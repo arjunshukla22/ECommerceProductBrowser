@@ -76,12 +76,10 @@ class UserProfileVC: UIViewController {
         UserDefaultsManager.shared.clearUser()
         
         // Push Login screen
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        if let homeVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC {
-            if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-                let nav = UINavigationController(rootViewController: homeVC)
-                sceneDelegate.window?.rootViewController = nav
-            }
+        let homeVC = StoryboardLoader(name: .login).viewController(ofType: LoginVC.self)
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            let nav = UINavigationController(rootViewController: homeVC)
+            sceneDelegate.window?.rootViewController = nav
         }
     }
 }

@@ -26,7 +26,7 @@ extension UIViewController {
         
         let snackbar = TTGSnackbar()
         snackbar.message = msg
-        snackbar.duration = .long
+        snackbar.duration = .middle
         snackbar.leftMargin = 16
         snackbar.rightMargin = 16
         snackbar.backgroundColor = ColorUtility.primaryColor
@@ -47,8 +47,6 @@ extension UIViewController {
             vWMain.isHidden = true
             
         }else{
-            //            vWInner.layoutIfNeeded()
-            //            vWInner.layoutSubviews()
             vWInner.startShimmeringAnimation(direction: .leftToRight)
             vWInner.isHidden = false
             vWMain.isHidden = false
