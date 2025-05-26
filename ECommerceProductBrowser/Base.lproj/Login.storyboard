@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_3" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="avertastd-bold.otf">
+            <string>AvertaStd-Bold</string>
+        </array>
+        <array key="avertastd-regular.otf">
+            <string>AvertaStd-Regular</string>
+        </array>
+        <array key="avertastd-semibold.otf">
+            <string>AvertaStd-Semibold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--LoginVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="LoginVC" id="BYZ-38-t0r" customClass="LoginVC" customModule="ECommerceProductBrowser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="juI-gG-4w7">
+                                <rect key="frame" x="0.0" y="144.00000000000003" width="402" height="294.66666666666674"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="YDH-E8-tMs">
+                                        <rect key="frame" x="16" y="16" width="370" height="262.66666666666669"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJg-Cu-elr">
+                                                <rect key="frame" x="0.0" y="0.0" width="370" height="86.666666666666671"/>
+                                                <string key="text" base64-UTF8="YES">
+RS1Db21tZXJjZSADClByb2R1Y3QgQnJvd3Nlcg
+</string>
+                                                <fontDescription key="fontDescription" name="AvertaStd-Semibold" family="Averta Std" pointSize="35"/>
+                                                <color key="textColor" name="primaryColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gJN-yL-SpA">
+                                                <rect key="frame" x="0.0" y="146.66666666666669" width="370" height="116"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JJQ-8X-f2D">
+                                                        <rect key="frame" x="0.0" y="0.0" width="370" height="48"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35G-tr-EoP">
+                                                                <rect key="frame" x="0.0" y="0.0" width="370" height="48"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ohT-jl-kL9">
+                                                                        <rect key="frame" x="16" y="0.0" width="338" height="48"/>
+                                                                        <color key="tintColor" name="primaryColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="48" id="Gpm-hu-pIG"/>
+                                                                        </constraints>
+                                                                        <color key="textColor" name="primaryColor"/>
+                                                                        <fontDescription key="fontDescription" name="AvertaStd-Regular" family="Averta Std" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                                            <fontDescription key="fontDescription" name="AvertaStd-Regular" family="Averta Std" pointSize="16"/>
+                                                                        </variation>
+                                                                    </textField>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="48" id="Jyf-Gz-6Ya">
+                                                                        <variation key="heightClass=regular-widthClass=regular" constant="52"/>
+                                                                    </constraint>
+                                                                    <constraint firstItem="ohT-jl-kL9" firstAttribute="leading" secondItem="35G-tr-EoP" secondAttribute="leading" constant="16" id="Oma-sw-Bie"/>
+                                                                    <constraint firstItem="ohT-jl-kL9" firstAttribute="top" secondItem="35G-tr-EoP" secondAttribute="top" id="Pwh-Vq-5PR"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="ohT-jl-kL9" secondAttribute="trailing" constant="16" id="vKf-f3-rT0"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter a valid email ID" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZU-OM-vVh">
+                                                                <rect key="frame" x="0.0" y="0.0" width="370" height="0.0"/>
+                                                                <fontDescription key="fontDescription" name="AvertaStd-Semibold" family="Averta Std" pointSize="12"/>
+                                                                <color key="textColor" name="errorRed_clr"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Nwt-lF-FBa">
+                                                        <rect key="frame" x="0.0" y="68" width="370" height="48"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJI-Xs-4hO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="370" height="48"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XdM-We-5dr">
+                                                                        <rect key="frame" x="16" y="0.0" width="319" height="48"/>
+                                                                        <color key="tintColor" name="primaryColor"/>
+                                                                        <color key="textColor" name="primaryColor"/>
+                                                                        <fontDescription key="fontDescription" name="AvertaStd-Regular" family="Averta Std" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                                            <fontDescription key="fontDescription" name="AvertaStd-Regular" family="Averta Std" pointSize="16"/>
+                                                                        </variation>
+                                                                    </textField>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9O-l8-Rfc">
+                                                                        <rect key="frame" x="338" y="14" width="20" height="20"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="20" id="Itr-fS-K3g"/>
+                                                                            <constraint firstAttribute="height" constant="20" id="QRO-qA-6cw"/>
+                                                                        </constraints>
+                                                                        <state key="normal" image="eye_ON"/>
+                                                                        <connections>
+                                                                            <action selector="togglePasswordVisibility:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N0D-pe-8m3"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="K9O-l8-Rfc" firstAttribute="leading" secondItem="XdM-We-5dr" secondAttribute="trailing" constant="3" id="6iR-Oi-78p"/>
+                                                                    <constraint firstItem="XdM-We-5dr" firstAttribute="leading" secondItem="aJI-Xs-4hO" secondAttribute="leading" constant="16" id="Ara-9D-Wjt"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="K9O-l8-Rfc" secondAttribute="trailing" constant="12" id="Uwe-7Y-gZG"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="XdM-We-5dr" secondAttribute="bottom" id="YaG-qU-IMF"/>
+                                                                    <constraint firstAttribute="height" constant="48" id="ezN-aO-uqm">
+                                                                        <variation key="heightClass=regular-widthClass=regular" constant="52"/>
+                                                                    </constraint>
+                                                                    <constraint firstItem="XdM-We-5dr" firstAttribute="top" secondItem="aJI-Xs-4hO" secondAttribute="top" id="nxf-dz-Wyt"/>
+                                                                    <constraint firstItem="K9O-l8-Rfc" firstAttribute="top" secondItem="aJI-Xs-4hO" secondAttribute="top" constant="14" id="ojs-RY-AbB"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter a valid Password" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iht-Pa-Ub6">
+                                                                <rect key="frame" x="0.0" y="0.0" width="370" height="0.0"/>
+                                                                <fontDescription key="fontDescription" name="AvertaStd-Semibold" family="Averta Std" pointSize="12"/>
+                                                                <color key="textColor" name="errorRed_clr"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="YDH-E8-tMs" firstAttribute="leading" secondItem="juI-gG-4w7" secondAttribute="leading" constant="16" id="BfI-is-FMH"/>
+                                    <constraint firstAttribute="trailing" secondItem="YDH-E8-tMs" secondAttribute="trailing" constant="16" id="Kuy-oe-HtL"/>
+                                    <constraint firstAttribute="bottom" secondItem="YDH-E8-tMs" secondAttribute="bottom" constant="16" id="ahy-u9-crO"/>
+                                    <constraint firstItem="YDH-E8-tMs" firstAttribute="top" secondItem="juI-gG-4w7" secondAttribute="top" constant="16" id="jOn-rD-Qak"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSO-DT-zky">
+                                <rect key="frame" x="16" y="758" width="370" height="48"/>
+                                <color key="backgroundColor" name="primaryColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="KpV-5f-bb2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvertaStd-Bold" family="Averta Std" pointSize="14"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" name="clr_white"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionLoginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ckd-d0-bX3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="juI-gG-4w7" secondAttribute="trailing" id="1sn-f6-MLl"/>
+                            <constraint firstItem="juI-gG-4w7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="RPF-iA-5IB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dSO-DT-zky" secondAttribute="trailing" constant="16" id="lmy-Rv-Szz"/>
+                            <constraint firstItem="dSO-DT-zky" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="nXT-6U-Bt4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dSO-DT-zky" secondAttribute="bottom" id="rTA-gA-IAe"/>
+                            <constraint firstItem="juI-gG-4w7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sM8-z9-JHt"/>
+                            <constraint firstItem="juI-gG-4w7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="udC-kR-DkS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="T0O-jx-vnn"/>
+                    <connections>
+                        <outlet property="btnLogin" destination="dSO-DT-zky" id="5sZ-eM-3Ey"/>
+                        <outlet property="btnShowHideSecurePasword" destination="K9O-l8-Rfc" id="dQM-mX-Lmm"/>
+                        <outlet property="lblErrorEmail" destination="vZU-OM-vVh" id="EOW-ae-vNj"/>
+                        <outlet property="lblErrorPassword" destination="Iht-Pa-Ub6" id="QAz-bm-aek"/>
+                        <outlet property="txtFldEmail" destination="ohT-jl-kL9" id="z7t-0q-UUB"/>
+                        <outlet property="txtFldPassword" destination="XdM-We-5dr" id="EgL-Kz-Ixy"/>
+                        <outlet property="vWEmail" destination="35G-tr-EoP" id="jvB-0M-wlw"/>
+                        <outlet property="vWPassword" destination="aJI-Xs-4hO" id="vyb-rJ-aRV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1787" y="-62"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="eye_ON" width="20" height="14"/>
+        <namedColor name="clr_white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="errorRed_clr">
+            <color red="0.89411764705882357" green="0.12941176470588237" blue="0.17647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primaryColor">
+            <color red="0.18823529411764706" green="0.19215686274509805" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

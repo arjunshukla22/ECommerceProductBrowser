@@ -11,7 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -20,16 +19,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if AppLaunchTracker.shared.isFirstLaunch() {
+            // User Token Delete
+            TokenManager.shared.deleteToken()
+        }
         
-        let rootVC: UIViewController
+        var rootVC: UIViewController
         
         if TokenManager.shared.getToken() != nil {
             // Token exists → go to HomeVC
-            rootVC = storyboard.instantiateViewController(withIdentifier: "HomeVC")
+            rootVC = StoryboardLoader(name: .home).viewController(ofType: HomeVC.self)
+            
         } else {
             // No token → go to LoginVC
-            rootVC = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+            rootVC = StoryboardLoader(name: .login).viewController(ofType: LoginVC.self)
         }
         
         window?.rootViewController = UINavigationController(rootViewController: rootVC)

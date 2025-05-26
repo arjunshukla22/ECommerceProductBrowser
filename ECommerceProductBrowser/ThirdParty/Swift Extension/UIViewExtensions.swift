@@ -1,10 +1,10 @@
 //
 //  UIViewExtensions.swift
-//  EZSwiftExtensions
+///  ECommerceProductBrowser
 //
-//  Created by Goktug Yilmaz on 15/07/15.
-//  Copyright (c) 2015 Goktug Yilmaz. All rights reserved.
+//  Created by Arjun Shukla on 23/05/25.
 //
+
 
 #if os(iOS) || os(tvOS)
 

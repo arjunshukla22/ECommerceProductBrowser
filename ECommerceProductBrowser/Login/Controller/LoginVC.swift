@@ -178,7 +178,7 @@ extension LoginVC {
         self.saveUserProfileDatainLocal()
         
         // Push home screen
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
         if let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeVC {
             if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
                 let nav = UINavigationController(rootViewController: homeVC)

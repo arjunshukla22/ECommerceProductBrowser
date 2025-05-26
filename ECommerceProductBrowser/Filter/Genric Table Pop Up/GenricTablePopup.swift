@@ -1,9 +1,8 @@
 //
 //  GenricTablePopup.swift
-//  PrepLadder
+//  ECommerceProductBrowser
 //
-//  Created by Arjun iOS  on 24/06/24.
-//  Copyright © 2024 PrepLadder. All rights reserved.
+//  Created by Arjun Shukla on 23/05/25.
 //
 
 import UIKit

@@ -1,9 +1,8 @@
 //
 //  DragAndDropMethods.h
-//  PrepLadder
+//  ECommerceProductBrowser
 //
-//  Created by Prepladder Pvt ltd on 02/11/21.
-//  Copyright © 2021 PrepLadder. All rights reserved.
+//  Created by Arjun Shukla on 23/05/25.
 //
 
 #ifndef DragAndDropMethods_h

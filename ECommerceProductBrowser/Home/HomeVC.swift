@@ -11,16 +11,10 @@ import TTGSnackbar
 
 class HomeVC: UIViewController {
     
-    
-    // User
     @IBOutlet weak var vWUser: UIView!
     @IBOutlet weak var imgUser: UIImageView!
     @IBOutlet weak var lblUserName: UILabel!
-    
-    
     @IBOutlet weak var btnFilter: UIButton!
-    
-    
     @IBOutlet weak var emptyStateView: UIView!
     
     @IBOutlet weak var collCategory: UICollectionView!
@@ -36,6 +30,9 @@ class HomeVC: UIViewController {
     @IBOutlet weak var txtFldSearch: UITextField!
     @IBOutlet weak var btnSearchCancel: UIButton!
     
+    @IBOutlet weak var vWMainSearchHeightConstraint: NSLayoutConstraint!
+    
+    var selectedProduct : Product?
     
     @Published var userSelectedCategory : Category?
     
@@ -67,11 +64,7 @@ class HomeVC: UIViewController {
         self.vWSearch.layer.borderWidth = 1
         self.vWSearch.layer.cornerRadius = 8
         
-//        txtFldSearch.delegate = self
-//        
-//        txtFldSearch.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-//        txtFldSearch.addTarget(self, action: #selector(self.textFieldDidEND(_:)), for: .editingDidEnd)
-        
+
         txtFldSearch.attributedPlaceholder = NSAttributedString(
             string: "Try Searching product",
             attributes: [NSAttributedString.Key.foregroundColor: ColorUtility.secondaryColor]
@@ -85,8 +78,6 @@ class HomeVC: UIViewController {
             .receive(on: RunLoop.main)
             .sink { [weak self] searchText in
                
-                print("Search Text: \(searchText)")
-                
                 self?.btnSearchCancel.isHidden = searchText.isEmpty
                 
                 self?.viewModel.searchQuery = searchText
@@ -97,17 +88,48 @@ class HomeVC: UIViewController {
     }
     
     @IBAction func actionInnerSearchCross(_ sender: Any) {
-        self.txtFldSearch.text = ""
-        self.viewModel.searchQuery = ""
-        self.btnSearchCancel.isHidden = true
+        callCrossSearchUpdateUI()
     }
     
     @IBAction func actionTapSearch(_ sender: Any) {
-        self.vWMainSearch.isHidden = false
+        
+        self.btnSearchOL.isHidden = true
+        setMainSearchView(hidden: false)
     }
     
     @IBAction func actionCancelSearchVw(_ sender: Any) {
-        self.vWMainSearch.isHidden = true
+        self.btnSearchOL.isHidden = false
+        callCrossSearchUpdateUI()
+        setMainSearchView(hidden: true)
+    }
+    
+    
+    func setMainSearchView(hidden: Bool, animated: Bool = true) {
+        
+        self.vWMainSearch.isHidden = false
+        
+        let targetHeight: CGFloat = hidden ? 0 : 46 // Set your view’s normal height here
+        
+        if animated {
+            UIView.animate(withDuration: 0.3) {
+                self.vWMainSearchHeightConstraint.constant = targetHeight
+                self.vWMainSearch.alpha = hidden ? 0 : 1
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            vWMainSearchHeightConstraint.constant = targetHeight
+            vWMainSearch.alpha = hidden ? 0 : 1
+        }
+    }
+
+    
+    
+    private func callCrossSearchUpdateUI() {
+        self.txtFldSearch.text = ""
+        self.txtFldSearch.resignFirstResponder()
+        
+        self.viewModel.searchQuery = ""
+        self.btnSearchCancel.isHidden = true
     }
     
 
@@ -172,6 +194,9 @@ class HomeVC: UIViewController {
                     
                     
                     self?.btnFilter.isHidden = /self?.viewModel.categories.count > 0 ? false : true
+                    
+                    self?.btnSearchOL.isHidden = /self?.btnFilter.isHidden
+                    
                 }
             }
             .store(in: &cancellables)
@@ -200,7 +225,7 @@ class HomeVC: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 // Show an alert or label
-                print("Error: \(error)")
+               // print("Error: \(self?.error)")
                 
             }
             .store(in: &cancellables)
@@ -227,25 +252,17 @@ class HomeVC: UIViewController {
     }
     
     
-    
-    
-    
-    
     @IBAction func actionTapUser(_ sender: Any) {
         
-        // Push home screen
-        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "UserProfileVC") as? UserProfileVC {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        // Push Profile screen
+        let vc = StoryboardLoader(name: .profile).viewController(ofType: UserProfileVC.self)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func actionTapFilter(_ sender: Any) {
-        
-        // Push home screen
-        let storyboard = UIStoryboard(name: "Filter", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "FilterVC") as? FilterVC,
-           let category = self.userSelectedCategory {
+        // Push Filter screen
+        let vc = StoryboardLoader(name: .filter).viewController(ofType: FilterVC.self)
+        if let category = self.userSelectedCategory {
             vc.filterData = FilterEntity(category:category )
             vc.onFilterApplied = { [weak self] filterData in
                 self?.getDataAfterFilerApplied(filterData:filterData)
@@ -256,6 +273,11 @@ class HomeVC: UIViewController {
     
     
     fileprivate func getDataAfterFilerApplied(filterData:FilterEntity) {
+        
+        if let index = self.viewModel.categories.firstIndex(where: { $0.name == filterData.category.name }) {
+            let indexPath = IndexPath(item: index, section: 0)
+            self.collCategory.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
         
         self.userSelectedCategory = filterData.category
        
@@ -311,6 +333,10 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             let product = viewModel.filteredProducts[indexPath.item]
             cell.bindCellData(product: product)
             
+            
+            cell.vWCell.backgroundColor = self.selectedProduct?.title == product.title ? ColorUtility.selectedCell_bgColor : ColorUtility.clr_white
+            
+            
             return cell
         default:return UICollectionViewCell()
         }
@@ -330,7 +356,20 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             self.viewModel.filterData =  updatedFilter
             
             
-        case collProducts:break
+        case collProducts:
+            
+            let product = viewModel.filteredProducts[indexPath.item]
+            
+            // Selected Product
+            self.selectedProduct  = product
+            
+            self.collProducts.reloadData()
+            
+            // Push home screen
+            let productDetailVC: ProductDetailsVC = StoryboardLoader(name: .home).viewController(ofType: ProductDetailsVC.self)
+            productDetailVC.product = product
+            self.navigationController?.pushViewController(productDetailVC, animated: true)
+            
         default:break
         }
         
@@ -353,7 +392,6 @@ extension HomeVC {
         self.collProducts.showsHorizontalScrollIndicator = false
         
         self.collProducts.register(UINib(nibName: "ProductCVC", bundle: .main), forCellWithReuseIdentifier: "ProductCVC")
-        // self.collProducts.collectionViewLayout.invalidateLayout()
         
     }
     
