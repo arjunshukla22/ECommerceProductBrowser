@@ -27,11 +27,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var rootVC: UIViewController
         
         if TokenManager.shared.getToken() != nil {
-            // Token exists → go to HomeVC
+            // Token exists - go to HomeVC
             rootVC = StoryboardLoader(name: .home).viewController(ofType: HomeVC.self)
             
         } else {
-            // No token → go to LoginVC
+            // No token - go to LoginVC
             rootVC = StoryboardLoader(name: .login).viewController(ofType: LoginVC.self)
         }
         

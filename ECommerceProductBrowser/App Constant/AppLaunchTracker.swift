@@ -24,8 +24,7 @@ final class AppLaunchTracker {
         }
         return false
     }
-
-    /// Optional: Reset the first launch flag (for testing)
+    
     func reset() {
         UserDefaults.standard.removeObject(forKey: hasLaunchedBeforeKey)
         UserDefaults.standard.synchronize()
