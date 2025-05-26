@@ -33,13 +33,14 @@ class HomeVC: UIViewController {
     @IBOutlet weak var vWMainSearchHeightConstraint: NSLayoutConstraint!
     
     var selectedProduct : Product?
+    private var refresher: CollectionViewRefresher?
     
     @Published var userSelectedCategory : Category?
     
     private let viewModel = HomeViewModel(homeService: HomeService())
     private var cancellables = Set<AnyCancellable>()
     
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,14 +58,14 @@ class HomeVC: UIViewController {
     
     
     func SetUpSearchView(){
-       
+        
         self.vWMainSearch.isHidden = true
         
         self.vWSearch.layer.borderColor = ColorUtility.primaryColor.cgColor
         self.vWSearch.layer.borderWidth = 1
         self.vWSearch.layer.cornerRadius = 8
         
-
+        
         txtFldSearch.attributedPlaceholder = NSAttributedString(
             string: "Try Searching product",
             attributes: [NSAttributedString.Key.foregroundColor: ColorUtility.secondaryColor]
@@ -77,12 +78,12 @@ class HomeVC: UIViewController {
             .map { /$0.trimmingCharacters(in: .whitespacesAndNewlines) }
             .receive(on: RunLoop.main)
             .sink { [weak self] searchText in
-               
+                
                 self?.btnSearchCancel.isHidden = searchText.isEmpty
                 
                 self?.viewModel.searchQuery = searchText
-
-               // self?.viewModel.searchQuery = searchText
+                
+                // self?.viewModel.searchQuery = searchText
             }
             .store(in: &cancellables)
     }
@@ -121,7 +122,7 @@ class HomeVC: UIViewController {
             vWMainSearch.alpha = hidden ? 0 : 1
         }
     }
-
+    
     
     
     private func callCrossSearchUpdateUI() {
@@ -132,12 +133,13 @@ class HomeVC: UIViewController {
         self.btnSearchCancel.isHidden = true
     }
     
-
+    
     private func bindInternetModel() {
         NetworkMonitor.shared.$isConnected
+            .dropFirst()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isConnected in
-               
+                
                 self?.showSnackBar(msg: isConnected ? "Connected to Internet" : "No Internet Connection")
                 
                 if isConnected && self?.viewModel.categories.count == 0{
@@ -149,7 +151,7 @@ class HomeVC: UIViewController {
                         self?.viewModel.fetchProducts(with: filter)
                     }
                 }
-                            
+                
             }
             .store(in: &cancellables)
     }
@@ -164,6 +166,14 @@ class HomeVC: UIViewController {
         
         self.imgUser.contentMode = .scaleAspectFit
         
+        
+        refresher = CollectionViewRefresher(for: collProducts) { [weak self] in
+            if let filter = self?.viewModel.filterData {
+                self?.viewModel.fetchProducts(with: filter)
+            }
+            // End Refreshing
+            self?.refresher?.endRefreshing()
+        }
     }
     
     
@@ -185,7 +195,7 @@ class HomeVC: UIViewController {
         viewModel.$categories
             .receive(on: DispatchQueue.main)
             .sink { [weak self] categories in
-            
+                
                 self?.userSelectedCategory = categories.first
                 
                 if let firstCategory = categories.first {
@@ -207,16 +217,14 @@ class HomeVC: UIViewController {
                 // reload your product collection/table view
                 //print("Products updated:", products)
                 
-                debugPrint("Loading status:\(/self?.viewModel.isLoading)")
-                debugPrint("products Count:\(/products.count)")
-                
                 self?.collProducts.reloadData()
+                self?.collProducts.setContentOffset(.zero, animated: true)
                 
                 if /self?.viewModel.isLoading == false {
                     // show/hide loader
                     self?.emptyStateView.isHidden = products.count > 0 ? true : false
                 }
-        
+                
             }
             .store(in: &cancellables)
         
@@ -225,7 +233,7 @@ class HomeVC: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 // Show an alert or label
-               // print("Error: \(self?.error)")
+                // print("Error: \(self?.error)")
                 
             }
             .store(in: &cancellables)
@@ -248,7 +256,7 @@ class HomeVC: UIViewController {
                 self?.collCategory.reloadData()
             }
             .store(in: &cancellables)
-            
+        
     }
     
     
@@ -280,11 +288,11 @@ class HomeVC: UIViewController {
         }
         
         self.userSelectedCategory = filterData.category
-       
+        
         self.viewModel.filterData =  filterData
         
     }
-
+    
 }
 
 // MARK: Collection view Delegate & Data Source
@@ -322,7 +330,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             
             let category = viewModel.categories[indexPath.item]
             cell.bindCellData(category: category)
-    
+            
             cell.vWCell.backgroundColor = self.userSelectedCategory?.name == category.name ? ColorUtility.selectedCell_bgColor : ColorUtility.clr_white
             
             cell.lblTitle.font = self.userSelectedCategory?.name == category.name ? AppFont.bold.font(size: 12) : AppFont.regular.font(size: 12)
@@ -350,7 +358,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         case collCategory:
             let selected : Category = viewModel.categories[indexPath.item]
             userSelectedCategory = selected
-                
+            
             var updatedFilter  = self.viewModel.filterData
             updatedFilter?.category = selected
             self.viewModel.filterData =  updatedFilter
